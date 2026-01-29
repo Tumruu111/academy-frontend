@@ -16,20 +16,67 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+
       <h1>Vite + React</h1>
+
       <div className="card">
-        count is {count}
-        <button onClick={() => setCount((count) => count + 2)}>+</button>
-        <button onClick={() => setCount((count) => count - 2)}>-</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <p>count is {count}</p>
+        <button onClick={() => setCount(count + 1)}>+</button>
+        <button onClick={() => setCount(count - 1)}>-</button>
+        <button onClick={() => setCount(count - count)}>Reset</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <NameAdder />
+      <RevealSecret />
+      <UserProfile />
     </>
   );
 }
+function NameAdder() {
+  const [name, setName] = useState("");
 
+  return (
+    <>
+      <input
+        type="text"
+        placeholder="Enter your name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <p>Hello! {name}</p>
+    </>
+  );
+}
+function RevealSecret() {
+  const [secret, setSecret] = useState("Reveal Secret");
+
+  return (
+    <>
+      <button
+        onClick={() => setSecret("Nice job")}
+        onDoubleClickCapture={() => setSecret("Click again to reveal")}
+      >
+        {secret}
+      </button>
+      <p>Click on the button to reveal secret</p>
+    </>
+  );
+}
+function UserProfile() {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(0);
+  return (
+    <>
+      <input
+        type="text"
+        placeholder="Enter your name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <p>Your age is: {age}</p>
+      <button onClick={() => setAge(age + 1)}>+</button>
+      <button onClick={() => setAge(age - 1)}>-</button>
+      <button onClick={() => setAge(age - age)}>Reset</button>
+    </>
+  );
+}
 export default App;
