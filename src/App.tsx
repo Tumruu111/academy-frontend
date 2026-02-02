@@ -3,8 +3,20 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+// Type definitions for UserProfile props
+type UserProfileProps = {
+  name: string;
+  setName: React.Dispatch<React.SetStateAction<string>>;
+  age: number;
+  setAge: React.Dispatch<React.SetStateAction<number>>;
+};
+
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState<number>(0);
+
+  // State for UserProfile
+  const [userName, setUserName] = useState<string>("");
+  const [userAge, setUserAge] = useState<number>(0);
 
   return (
     <>
@@ -23,16 +35,27 @@ function App() {
         <p>count is {count}</p>
         <button onClick={() => setCount(count + 1)}>+</button>
         <button onClick={() => setCount(count - 1)}>-</button>
-        <button onClick={() => setCount(count - count)}>Reset</button>
+        <button onClick={() => setCount(0)}>Reset</button>
       </div>
+
       <NameAdder />
+
       <RevealSecret />
-      <UserProfile />
+
+      {/* UserProfile with props */}
+      <UserProfile
+        name={userName}
+        setName={setUserName}
+        age={userAge}
+        setAge={setUserAge}
+      />
     </>
   );
 }
+
+// NameAdder stays the same
 function NameAdder() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState<string>("");
 
   return (
     <>
@@ -46,8 +69,10 @@ function NameAdder() {
     </>
   );
 }
+
+// RevealSecret stays the same
 function RevealSecret() {
-  const [secret, setSecret] = useState("Reveal Secret");
+  const [secret, setSecret] = useState<string>("Reveal Secret");
 
   return (
     <>
@@ -61,11 +86,24 @@ function RevealSecret() {
     </>
   );
 }
-function UserProfile() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
+
+// UserProfile now with "is active" checkbox and glowing effect
+function UserProfile({ name, setName, age, setAge }: UserProfileProps) {
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  // Dynamic style for glow when active
+  const containerStyle: React.CSSProperties = {
+    padding: "10px",
+    borderRadius: "8px",
+    border: "1px solid #ccc",
+    marginTop: "10px",
+    display: "inline-block",
+    boxShadow: isActive ? "0 0 15px 3px green" : "none",
+    transition: "box-shadow 0.3s ease",
+  };
+
   return (
-    <>
+    <div style={containerStyle}>
       <input
         type="text"
         placeholder="Enter your name"
@@ -73,10 +111,23 @@ function UserProfile() {
         onChange={(e) => setName(e.target.value)}
       />
       <p>Your age is: {age}</p>
-      <button onClick={() => setAge(age + 1)}>+</button>
-      <button onClick={() => setAge(age - 1)}>-</button>
-      <button onClick={() => setAge(age - age)}>Reset</button>
-    </>
+      <div>
+        <button onClick={() => setAge(age + 1)}>+</button>
+        <button onClick={() => setAge(age - 1)}>-</button>
+        <button onClick={() => setAge(0)}>Reset</button>
+      </div>
+      <div style={{ marginTop: "10px" }}>
+        <label>
+          <input
+            type="checkbox"
+            checked={isActive}
+            onChange={(e) => setIsActive(e.target.checked)}
+          />{" "}
+          Is Active
+        </label>
+      </div>
+    </div>
   );
 }
+
 export default App;
