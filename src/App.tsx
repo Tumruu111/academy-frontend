@@ -3,7 +3,6 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-// Type definitions for UserProfile props
 type UserProfileProps = {
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
@@ -14,7 +13,6 @@ type UserProfileProps = {
 function App() {
   const [count, setCount] = useState<number>(0);
 
-  // State for UserProfile
   const [userName, setUserName] = useState<string>("");
   const [userAge, setUserAge] = useState<number>(0);
 
@@ -42,7 +40,6 @@ function App() {
 
       <RevealSecret />
 
-      {/* UserProfile with props */}
       <UserProfile
         name={userName}
         setName={setUserName}
@@ -53,7 +50,6 @@ function App() {
   );
 }
 
-// NameAdder stays the same
 function NameAdder() {
   const [name, setName] = useState<string>("");
 
@@ -70,7 +66,6 @@ function NameAdder() {
   );
 }
 
-// RevealSecret stays the same
 function RevealSecret() {
   const [secret, setSecret] = useState<string>("Reveal Secret");
 
@@ -87,11 +82,9 @@ function RevealSecret() {
   );
 }
 
-// UserProfile now with "is active" checkbox and glowing effect
 function UserProfile({ name, setName, age, setAge }: UserProfileProps) {
   const [isActive, setIsActive] = useState<boolean>(false);
 
-  // Dynamic style for glow when active
   const containerStyle: React.CSSProperties = {
     padding: "10px",
     borderRadius: "8px",
