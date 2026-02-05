@@ -8,7 +8,7 @@ export const useDramaMovies = (genre: string) => {
   useEffect(() => {
     setLoading(true);
 
-    fetch(`http://localhost:3000/movie/movies?genre=${genre}`)
+    fetch(`http://localhost:3001/movie/movies?genre=${genre}`)
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);

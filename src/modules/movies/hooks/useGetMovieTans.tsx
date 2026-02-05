@@ -6,11 +6,12 @@ export const useGetMoviesTans = (genre?: string) => {
     queryKey: ["movies", genre],
     queryFn: async () => {
       return fetch(
-        `http://localhost:3000/movie/movies?genre=${genre || ""}`,
+        `http://localhost:3001/movie/movies?genre=${genre || ""}`,
       ).then((res) => {
         return res.json();
       });
     },
   });
+
   return { movies: data, loading: isLoading, isError };
 };

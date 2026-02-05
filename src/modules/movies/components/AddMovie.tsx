@@ -1,10 +1,28 @@
-import {useAddMovie} from "../hooks/useAddMovieTans"
+import { useRef } from "react";
+import { useAddMovie } from "../hooks/useAddMovieTans";
 
-const { mutate: addMovie, isError } = useAddMovie();
+export const AddMovie = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { addMovie } = useAddMovie();
 
-addMovie({
-  title: "Inception",
-  year: "2010",
-  plot: "",
-  poster: 
-});
+  const movieAdd = () => {
+    if (!inputRef.current) return;
+
+    const value = inputRef.current.value;
+
+    if (!value) {
+      return window.alert("Title oruulna uu");
+    }
+
+    addMovie(value);
+
+    inputRef.current.value = "";
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} placeholder="Movie title" />
+      <button onClick={movieAdd}>Add Movie</button>
+    </div>
+  );
+};
