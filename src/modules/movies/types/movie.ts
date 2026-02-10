@@ -11,3 +11,10 @@ export interface IMovie {
   genres: string[];
   directors: string[];
 }
+export interface IComment {
+  name: string;
+  email: string;
+  movie_id: string;
+  text: string;
+  date: Date;
+}

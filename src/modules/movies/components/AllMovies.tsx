@@ -8,7 +8,7 @@ export const AllMovies = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px]">
+      <div className="flex flex-col items-center justify-center min-h-100">
         <div className="relative">
           <LoaderCircle className="animate-spin w-12 h-12 text-yellow-400" />
           <div className="absolute inset-0 animate-ping">
@@ -24,7 +24,7 @@ export const AllMovies = () => {
 
   if (isError) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px]">
+      <div className="flex flex-col items-center justify-center min-h-100">
         <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-8 text-center max-w-md">
           <AlertCircle className="w-16 h-16 text-red-400 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-white mb-2">
@@ -40,7 +40,7 @@ export const AllMovies = () => {
 
   if (!movies?.length) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[400px]">
+      <div className="flex flex-col items-center justify-center min-h-100">
         <div className="bg-slate-800/30 border border-slate-700/50 rounded-2xl p-8 text-center max-w-md backdrop-blur-sm">
           <Film className="w-16 h-16 text-slate-500 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-white mb-2">

@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useGetMoviesTans } from "../hooks/useGetMovieTans";
+import { useGetCommentsTans } from "../hooks/useGetCommentsTans";
 import {
   LoaderCircle,
   Star,
@@ -68,7 +69,7 @@ export const MovieDetail = () => {
                     </span>
                     <span className="flex items-center gap-2">
                       <Clock className="w-4 h-4" />
-                      {movie.runtime}
+                      Runtime: {movie.runtime}
                     </span>
                   </div>
                 </div>
