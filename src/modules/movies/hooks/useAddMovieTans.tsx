@@ -1,17 +1,23 @@
-import { useMutation } from "@tanstack/react-query";
+import type { IMovie } from "../types/movie";
 
 export const useAddMovie = () => {
-  const { mutate } = useMutation({
-    mutationFn: (title: string) => {
-      return fetch(`http://localhost:3001/movie/addMovie`, {
+  const addMovie = async (movie: IMovie) => {
+    try {
+      const res = await fetch("http://localhost:3001/movie/addMovie", {
         method: "POST",
-        body: JSON.stringify({ title }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movie),
       });
-    },
-    onSuccess: () => {
-      window.alert("12312");
-    },
-  });
 
-  return { addMovie: mutate };
+      const data = await res.json();
+
+      console.log("SUCCESS:", data);
+    } catch (error) {
+      console.error("ERROR:", error);
+    }
+  };
+
+  return { addMovie };
 };

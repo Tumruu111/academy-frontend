@@ -1,15 +1,16 @@
 export interface IMovie {
   title: string;
-  _id: string;
+  _id?: string;
   poster: string;
   year: string;
   plot: string;
   runtime: string;
   imdb: {
-    rating: string;
+    rating: number;
   };
   genres: string[];
   directors: string[];
+  fullplot: string;
 }
 export interface IComment {
   name: string;
