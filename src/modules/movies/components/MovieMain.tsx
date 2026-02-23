@@ -21,7 +21,10 @@ export const MovieMain = () => {
   };
   return (
     <div className="bg-slate-950 text-slate-200">
-      <button className="button" onClick={() => changeDataType("addMovie")}>
+      <button
+        className="bg-slate-960 text-slate-200"
+        onClick={() => changeDataType("addMovie")}
+      >
         Add movie
       </button>
 
